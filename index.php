@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高校生・大学生マッチング - レビュー一覧 (SQLなし版)</title>
+    <title>高校生・大学生マッチング - レビュー一覧</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
+<body>    <header>
         <div class="container">
             <h1>高校生・大学生マッチング</h1>
-            <p class="subtitle">WEB面談レビューシステム (SQLなし版)</p>
-            <p class="version-note">📂 JSONファイルベース</p>
+            <p class="subtitle">WEB面談レビューシステム</p>
         </div>
     </header>
 
@@ -24,10 +21,13 @@
                     <div class="form-group">
                         <label for="university">大学名</label>
                         <select name="university" id="university">
-                            <option value="">すべて</option>
-                            <?php
+                            <option value="">すべて</option>                            <?php
                             require_once 'includes/DataManager.php';
                             $dataManager = new DataManager();
+                            
+                            // デバッグ情報を表示
+                            error_reporting(E_ALL);
+                            ini_set('display_errors', 1);
                             
                             try {
                                 $universities = $dataManager->getUniversities();
@@ -180,14 +180,9 @@
             }
             ?>
         </section>
-    </main>
-
-    <footer>
+    </main>    <footer>
         <div class="container">
-            <p>&copy; 2025 高校生・大学生マッチングアプリ (SQLなし版)</p>
-            <p class="comparison-link">
-                <a href="../kadai06_basic_php/">SQL版と比較</a>
-            </p>
+            <p>&copy; 2025 高校生・大学生マッチングアプリ</p>
         </div>
     </footer>
 </body>

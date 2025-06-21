@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レビュー投稿 - 高校生・大学生マッチング (SQLなし版)</title>
+    <title>レビュー投稿 - 高校生・大学生マッチング</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
+<body>    <header>
         <div class="container">
             <h1>レビュー投稿</h1>
-            <p class="subtitle">WEB面談の感想をシェアしよう (SQLなし版)</p>
+            <p class="subtitle">WEB面談の感想をシェアしよう</p>
         </div>
     </header>
 
@@ -53,11 +51,9 @@
                     // JSONファイルに保存
                     $result = $dataManager->addReview($_POST);
                     
-                    if ($result) {
-                        echo '<div class="success-message">';
+                    if ($result) {                        echo '<div class="success-message">';
                         echo '<h2>レビューの投稿が完了しました！</h2>';
                         echo '<p>ありがとうございました。あなたのレビューが他の高校生の参考になります。</p>';
-                        echo '<p class="tech-note">📂 JSONファイル (data/reviews.json) に保存されました</p>';
                         echo '<a href="index.php" class="btn-primary">レビュー一覧に戻る</a>';
                         echo '</div>';
                     } else {
@@ -221,11 +217,9 @@
         </section>
 
         <?php } ?>
-    </main>
-
-    <footer>
+    </main>    <footer>
         <div class="container">
-            <p>&copy; 2025 高校生・大学生マッチングアプリ (SQLなし版)</p>
+            <p>&copy; 2025 高校生・大学生マッチングアプリ</p>
         </div>
     </footer>
 </body>

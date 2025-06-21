@@ -6,23 +6,40 @@
  */
 
 class DataManager {
-    private $dataDir;
-    
-    public function __construct() {
-        $this->dataDir = __DIR__ . '/data/';
+    private $dataDir;    public function __construct() {
+        $this->dataDir = dirname(__DIR__) . '/data/';
+        // デバッグ: パス確認
+        if (!is_dir($this->dataDir)) {
+            echo "<!-- データディレクトリが見つかりません: " . $this->dataDir . " -->";
+        } else {
+            echo "<!-- データディレクトリ確認OK: " . $this->dataDir . " -->";
+        }
     }
-    
-    /**
+      /**
      * JSONファイルからデータを読み込み
      */
     private function loadJSON($filename) {
         $filepath = $this->dataDir . $filename;
+        
+        // デバッグ情報
         if (!file_exists($filepath)) {
+            echo "<!-- ファイルが見つかりません: $filepath -->";
             return [];
         }
         
         $json = file_get_contents($filepath);
-        return json_decode($json, true) ?: [];
+        if ($json === false) {
+            echo "<!-- ファイル読み込み失敗: $filepath -->";
+            return [];
+        }
+        
+        $data = json_decode($json, true);
+        if ($data === null) {
+            echo "<!-- JSON解析失敗: $filepath -->";
+            return [];
+        }
+        
+        return $data;
     }
     
     /**

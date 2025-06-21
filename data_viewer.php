@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データ確認 - SQLなし版</title>
+    <title>データ確認</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .data-section {
@@ -31,25 +30,17 @@
             border-radius: 8px;
             text-align: center;
             border: 1px solid #ffe5e5;
-        }
-        .stat-value {
+        }        .stat-value {
             font-size: 2rem;
             font-weight: bold;
             color: #ff6b6b;
         }
-        .comparison-section {
-            background: #e3f2fd;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #1976d2;
-        }
     </style>
 </head>
-<body>
-    <header>
+<body>    <header>
         <div class="container">
             <h1>📊 データ確認ページ</h1>
-            <p class="subtitle">JSONファイルベースのデータ管理 (SQLなし版)</p>
+            <p class="subtitle">レビューデータ管理</p>
         </div>
     </header>
 
@@ -99,100 +90,31 @@
             echo '<p><strong>時間正確性平均:</strong> ' . $stats['avg_punctuality'] . '/5</p>';
             echo '</div>';
             echo '</section>';
-            
-            // 大学生データの表示
+              // 大学生データの表示
             echo '<section class="data-section">';
-            echo '<h2>👨‍🎓 大学生データ (students.json)</h2>';
-            echo '<p><strong>ファイル場所:</strong> data/students.json</p>';
-            echo '<p><strong>データ件数:</strong> ' . count($students) . '件</p>';
+            echo '<h2>👨‍🎓 登録大学生一覧</h2>';
+            echo '<p><strong>登録者数:</strong> ' . count($students) . '名</p>';
             echo '<div class="json-data">' . htmlspecialchars(json_encode($students, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</div>';
             echo '</section>';
-            
-            // レビューデータの表示
+              // レビューデータの表示
             echo '<section class="data-section">';
-            echo '<h2>📝 レビューデータ (reviews.json)</h2>';
-            echo '<p><strong>ファイル場所:</strong> data/reviews.json</p>';
-            echo '<p><strong>データ件数:</strong> ' . count($reviews) . '件</p>';
+            echo '<h2>📝 投稿されたレビュー</h2>';
+            echo '<p><strong>レビュー総数:</strong> ' . count($reviews) . '件</p>';
             echo '<div class="json-data">' . htmlspecialchars(json_encode($reviews, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</div>';
             echo '</section>';
-            
-        } catch (Exception $e) {
+              } catch (Exception $e) {
             echo '<section class="data-section">';
             echo '<div class="error-messages">';
             echo '<h3>❌ エラーが発生しました</h3>';
-            echo '<p>データファイルの読み込みに失敗しました。</p>';
-            echo '<p>エラー内容: ' . htmlspecialchars($e->getMessage()) . '</p>';
-            echo '<p>以下を確認してください：</p>';
-            echo '<ul>';
-            echo '<li>data/students.json ファイルが存在するか</li>';
-            echo '<li>data/reviews.json ファイルが存在するか</li>';
-            echo '<li>ファイルの読み書き権限があるか</li>';
-            echo '<li>JSONファイルの形式が正しいか</li>';
-            echo '</ul>';
+            echo '<p>データの読み込みに失敗しました。</p>';
+            echo '<p>しばらく時間をおいてから再度お試しください。</p>';
             echo '</div>';
             echo '</section>';
-        }
-        ?>
+        }        ?>
 
-        <!-- SQL版との比較セクション -->
-        <section class="comparison-section">
-            <h2>🔄 SQL版との比較</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
-                <div>
-                    <h3>📂 SQLなし版 (現在のページ)</h3>
-                    <ul>
-                        <li>📄 JSONファイルでデータ管理</li>
-                        <li>🔧 データベース設定不要</li>
-                        <li>💾 ファイルベースの保存</li>
-                        <li>🏃‍♂️ セットアップが簡単</li>
-                        <li>📊 データはテキストファイルで確認可能</li>
-                        <li>⚠️ 大量データには不向き</li>
-                        <li>🔒 同時アクセス制御が困難</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>🗄️ SQL版</h3>
-                    <ul>
-                        <li>💾 MySQLデータベースでデータ管理</li>
-                        <li>🛠️ データベースサーバー必要</li>
-                        <li>⚡ 高速なデータ検索・操作</li>
-                        <li>🏗️ 複雑なクエリに対応</li>
-                        <li>📈 大量データの処理が得意</li>
-                        <li>🔄 トランザクション処理</li>
-                        <li>👥 複数ユーザーの同時アクセス対応</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem; text-align: center;">
-                <h4>🚀 比較してみよう！</h4>
-                <p>
-                    <a href="../kadai06_basic_php/" class="btn-primary">SQL版を確認</a>
-                    <a href="index.php" class="btn-secondary">SQLなし版に戻る</a>
-                </p>
-            </div>
-        </section>
-
-        <!-- ファイル構造の説明 -->
-        <section class="data-section">
-            <h2>📁 ファイル構造</h2>
-            <div class="json-data">kadai06_no_sql/
-├── index.php              (メインページ)
-├── post_review.php        (レビュー投稿)
-├── data_viewer.php        (このページ)
-├── css/
-│   └── style.css         (スタイルシート)
-├── includes/
-│   └── DataManager.php   (データ管理クラス)
-└── data/
-    ├── students.json     (大学生データ)
-    └── reviews.json      (レビューデータ)</div>
-        </section>
-    </main>
-
-    <footer>
+    </main>    <footer>
         <div class="container">
-            <p>&copy; 2025 高校生・大学生マッチングアプリ (SQLなし版)</p>
+            <p>&copy; 2025 高校生・大学生マッチングアプリ</p>
         </div>
     </footer>
 </body>
