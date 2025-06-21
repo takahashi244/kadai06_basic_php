@@ -8,7 +8,7 @@
 - JSONファイルベースのデータ管理システム
 
 ## ③アプリのデプロイURL
-- `https://gs-takahashi244.sakura.ne.jp/kadai06_basic_php/`
+- https://gs-takahashi244.sakura.ne.jp/kadai06_basic_php/
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 現在はPhase 1のため、ログイン機能は未実装
